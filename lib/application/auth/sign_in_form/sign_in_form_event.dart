@@ -7,6 +7,9 @@ abstract class SignInFormEvent with _$SignInFormEvent {
   const factory SignInFormEvent.passwordChanged(String passwordStr) =
       PasswordChanged;
 
+  const factory SignInFormEvent.registerWithEmailAndPasswordPressed(
+      String email, String password) = RegisterWithEmailAndPasswordPressed;
+
   const factory SignInFormEvent.signInWithEmailAndPasswordPressed() =
       SignInWithEmailAndPasswordPressed;
 
