@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:notes_ddd/di/injection.dart';
 
 void main() {
+  configureDependencies(Environment.dev);
   runApp(MyApp());
 }
 
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           body: Container(
-        child: Center(child: Text('Hello world')),
+        child: const Center(child: const Text('Hello world')),
       )),
     );
   }
