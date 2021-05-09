@@ -15,28 +15,61 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {@required EmailAddress email, @required Password password}) async {
-
     final emailStr = email.getOrCrash();
     final passwordStr = password.getOrCrash();
     try {
-      final _firebaseAuthResult =
+      final UserCredential _firebaseAuthResult =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: emailStr, password: passwordStr);
-    } on FirebaseAuthException {
-      // TODO complete
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        return left(const AuthFailure.emailIsAlreadyInUse());
+      } else
+        return left(const AuthFailure.serverError());
     }
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
-      {@required EmailAddress email, @required Password password}) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+      {@required EmailAddress email, @required Password password}) async {
+    final emailStr = email.getOrCrash();
+    final passwordStr = password.getOrCrash();
+    try {
+      final UserCredential _firebaseAuthResult = await _firebaseAuth
+          .signInWithEmailAndPassword(email: emailStr, password: passwordStr);
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        return left(const AuthFailure.invalidEmailAndPassword());
+      } else {
+        print('SignIn server failure :: ${e.code}');
+        return left(const AuthFailure.serverError());
+      }
+    }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
+    try {
+      final googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return left(AuthFailure.canceledByUser());
+      }
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      return _firebaseAuth
+          .signInWithCredential(credential)
+          .then((r) => right(unit));
+    } on FirebaseAuthException catch (e) {
+      print("Sign in with google failure :: ${e.code}");
+      return left(AuthFailure.serverError());
+    }
   }
 }
