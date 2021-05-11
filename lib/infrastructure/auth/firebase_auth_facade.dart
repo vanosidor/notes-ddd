@@ -27,8 +27,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailIsAlreadyInUse());
-      } else
+      } else {
         return left(const AuthFailure.serverError());
+      }
     }
   }
 
@@ -68,7 +69,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       return _firebaseAuth
           .signInWithCredential(credential)
           .then((r) => right(unit));
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       return left(const AuthFailure.serverError());
     }
   }

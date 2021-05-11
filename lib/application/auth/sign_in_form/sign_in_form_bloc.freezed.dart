@@ -28,12 +28,8 @@ class _$SignInFormEventTearOff {
   }
 
 // ignore: unused_element
-  RegisterWithEmailAndPasswordPressed registerWithEmailAndPasswordPressed(
-      String email, String password) {
-    return RegisterWithEmailAndPasswordPressed(
-      email,
-      password,
-    );
+  RegisterWithEmailAndPasswordPressed registerWithEmailAndPasswordPressed() {
+    return const RegisterWithEmailAndPasswordPressed();
   }
 
 // ignore: unused_element
@@ -57,9 +53,7 @@ mixin _$SignInFormEvent {
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   });
@@ -67,7 +61,7 @@ mixin _$SignInFormEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
@@ -178,9 +172,7 @@ class _$EmailChanged implements EmailChanged {
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   }) {
@@ -197,7 +189,7 @@ class _$EmailChanged implements EmailChanged {
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
@@ -322,9 +314,7 @@ class _$PasswordChanged implements PasswordChanged {
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   }) {
@@ -341,7 +331,7 @@ class _$PasswordChanged implements PasswordChanged {
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
@@ -408,7 +398,6 @@ abstract class $RegisterWithEmailAndPasswordPressedCopyWith<$Res> {
           RegisterWithEmailAndPasswordPressed value,
           $Res Function(RegisterWithEmailAndPasswordPressed) then) =
       _$RegisterWithEmailAndPasswordPressedCopyWithImpl<$Res>;
-  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -423,68 +412,33 @@ class _$RegisterWithEmailAndPasswordPressedCopyWithImpl<$Res>
   @override
   RegisterWithEmailAndPasswordPressed get _value =>
       super._value as RegisterWithEmailAndPasswordPressed;
-
-  @override
-  $Res call({
-    Object email = freezed,
-    Object password = freezed,
-  }) {
-    return _then(RegisterWithEmailAndPasswordPressed(
-      email == freezed ? _value.email : email as String,
-      password == freezed ? _value.password : password as String,
-    ));
-  }
 }
 
 /// @nodoc
 class _$RegisterWithEmailAndPasswordPressed
     implements RegisterWithEmailAndPasswordPressed {
-  const _$RegisterWithEmailAndPasswordPressed(this.email, this.password)
-      : assert(email != null),
-        assert(password != null);
-
-  @override
-  final String email;
-  @override
-  final String password;
+  const _$RegisterWithEmailAndPasswordPressed();
 
   @override
   String toString() {
-    return 'SignInFormEvent.registerWithEmailAndPasswordPressed(email: $email, password: $password)';
+    return 'SignInFormEvent.registerWithEmailAndPasswordPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is RegisterWithEmailAndPasswordPressed &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+        (other is RegisterWithEmailAndPasswordPressed);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(password);
-
-  @JsonKey(ignore: true)
-  @override
-  $RegisterWithEmailAndPasswordPressedCopyWith<
-          RegisterWithEmailAndPasswordPressed>
-      get copyWith => _$RegisterWithEmailAndPasswordPressedCopyWithImpl<
-          RegisterWithEmailAndPasswordPressed>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   }) {
@@ -493,7 +447,7 @@ class _$RegisterWithEmailAndPasswordPressed
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
     assert(signInWithGooglePressed != null);
-    return registerWithEmailAndPasswordPressed(email, password);
+    return registerWithEmailAndPasswordPressed();
   }
 
   @override
@@ -501,14 +455,14 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registerWithEmailAndPasswordPressed != null) {
-      return registerWithEmailAndPasswordPressed(email, password);
+      return registerWithEmailAndPasswordPressed();
     }
     return orElse();
   }
@@ -555,14 +509,8 @@ class _$RegisterWithEmailAndPasswordPressed
 }
 
 abstract class RegisterWithEmailAndPasswordPressed implements SignInFormEvent {
-  const factory RegisterWithEmailAndPasswordPressed(
-      String email, String password) = _$RegisterWithEmailAndPasswordPressed;
-
-  String get email;
-  String get password;
-  @JsonKey(ignore: true)
-  $RegisterWithEmailAndPasswordPressedCopyWith<
-      RegisterWithEmailAndPasswordPressed> get copyWith;
+  const factory RegisterWithEmailAndPasswordPressed() =
+      _$RegisterWithEmailAndPasswordPressed;
 }
 
 /// @nodoc
@@ -611,9 +559,7 @@ class _$SignInWithEmailAndPasswordPressed
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   }) {
@@ -630,7 +576,7 @@ class _$SignInWithEmailAndPasswordPressed
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
@@ -729,9 +675,7 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult when<TResult extends Object>({
     @required TResult emailChanged(String emailStr),
     @required TResult passwordChanged(String passwordStr),
-    @required
-        TResult registerWithEmailAndPasswordPressed(
-            String email, String password),
+    @required TResult registerWithEmailAndPasswordPressed(),
     @required TResult signInWithEmailAndPasswordPressed(),
     @required TResult signInWithGooglePressed(),
   }) {
@@ -748,7 +692,7 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult maybeWhen<TResult extends Object>({
     TResult emailChanged(String emailStr),
     TResult passwordChanged(String passwordStr),
-    TResult registerWithEmailAndPasswordPressed(String email, String password),
+    TResult registerWithEmailAndPasswordPressed(),
     TResult signInWithEmailAndPasswordPressed(),
     TResult signInWithGooglePressed(),
     @required TResult orElse(),
@@ -815,13 +759,13 @@ class _$SignInFormStateTearOff {
       @required Password password,
       @required bool isSubmitting,
       @required bool showErrorMessages,
-      @required Option<Either<AuthFailure, Unit>> authFailureOrSuccess}) {
+      @required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _SingInFormState(
       email: email,
       password: password,
       isSubmitting: isSubmitting,
       showErrorMessages: showErrorMessages,
-      authFailureOrSuccess: authFailureOrSuccess,
+      authFailureOrSuccessOption: authFailureOrSuccessOption,
     );
   }
 }
@@ -836,7 +780,7 @@ mixin _$SignInFormState {
   Password get password;
   bool get isSubmitting;
   bool get showErrorMessages;
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccess;
+  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
 
   @JsonKey(ignore: true)
   $SignInFormStateCopyWith<SignInFormState> get copyWith;
@@ -852,7 +796,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
       Password password,
       bool isSubmitting,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccess});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -870,7 +814,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
     Object password = freezed,
     Object isSubmitting = freezed,
     Object showErrorMessages = freezed,
-    Object authFailureOrSuccess = freezed,
+    Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed ? _value.email : email as EmailAddress,
@@ -880,9 +824,9 @@ class _$SignInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
-      authFailureOrSuccess: authFailureOrSuccess == freezed
-          ? _value.authFailureOrSuccess
-          : authFailureOrSuccess as Option<Either<AuthFailure, Unit>>,
+      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
+          ? _value.authFailureOrSuccessOption
+          : authFailureOrSuccessOption as Option<Either<AuthFailure, Unit>>,
     ));
   }
 }
@@ -899,7 +843,7 @@ abstract class _$SingInFormStateCopyWith<$Res>
       Password password,
       bool isSubmitting,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccess});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -919,7 +863,7 @@ class __$SingInFormStateCopyWithImpl<$Res>
     Object password = freezed,
     Object isSubmitting = freezed,
     Object showErrorMessages = freezed,
-    Object authFailureOrSuccess = freezed,
+    Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_SingInFormState(
       email: email == freezed ? _value.email : email as EmailAddress,
@@ -929,9 +873,9 @@ class __$SingInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
-      authFailureOrSuccess: authFailureOrSuccess == freezed
-          ? _value.authFailureOrSuccess
-          : authFailureOrSuccess as Option<Either<AuthFailure, Unit>>,
+      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
+          ? _value.authFailureOrSuccessOption
+          : authFailureOrSuccessOption as Option<Either<AuthFailure, Unit>>,
     ));
   }
 }
@@ -943,12 +887,12 @@ class _$_SingInFormState implements _SingInFormState {
       @required this.password,
       @required this.isSubmitting,
       @required this.showErrorMessages,
-      @required this.authFailureOrSuccess})
+      @required this.authFailureOrSuccessOption})
       : assert(email != null),
         assert(password != null),
         assert(isSubmitting != null),
         assert(showErrorMessages != null),
-        assert(authFailureOrSuccess != null);
+        assert(authFailureOrSuccessOption != null);
 
   @override
   final EmailAddress email;
@@ -959,11 +903,11 @@ class _$_SingInFormState implements _SingInFormState {
   @override
   final bool showErrorMessages;
   @override
-  final Option<Either<AuthFailure, Unit>> authFailureOrSuccess;
+  final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'SignInFormState(email: $email, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'SignInFormState(email: $email, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
@@ -981,9 +925,11 @@ class _$_SingInFormState implements _SingInFormState {
             (identical(other.showErrorMessages, showErrorMessages) ||
                 const DeepCollectionEquality()
                     .equals(other.showErrorMessages, showErrorMessages)) &&
-            (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
-                const DeepCollectionEquality()
-                    .equals(other.authFailureOrSuccess, authFailureOrSuccess)));
+            (identical(other.authFailureOrSuccessOption,
+                    authFailureOrSuccessOption) ||
+                const DeepCollectionEquality().equals(
+                    other.authFailureOrSuccessOption,
+                    authFailureOrSuccessOption)));
   }
 
   @override
@@ -993,7 +939,7 @@ class _$_SingInFormState implements _SingInFormState {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(authFailureOrSuccess);
+      const DeepCollectionEquality().hash(authFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -1003,11 +949,16 @@ class _$_SingInFormState implements _SingInFormState {
 
 abstract class _SingInFormState implements SignInFormState {
   const factory _SingInFormState(
-          {@required EmailAddress email,
-          @required Password password,
-          @required bool isSubmitting,
-          @required bool showErrorMessages,
-          @required Option<Either<AuthFailure, Unit>> authFailureOrSuccess}) =
+          {@required
+              EmailAddress email,
+          @required
+              Password password,
+          @required
+              bool isSubmitting,
+          @required
+              bool showErrorMessages,
+          @required
+              Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) =
       _$_SingInFormState;
 
   @override
@@ -1019,7 +970,7 @@ abstract class _SingInFormState implements SignInFormState {
   @override
   bool get showErrorMessages;
   @override
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccess;
+  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$SingInFormStateCopyWith<_SingInFormState> get copyWith;

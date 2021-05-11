@@ -1,5 +1,7 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notes_ddd/application/auth/sign_in_form/sign_in_form_bloc.dart';
 
 class SignInForm extends StatelessWidget {
@@ -10,12 +12,13 @@ class SignInForm extends StatelessWidget {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       builder: (context, state) {
         return Form(
-          // TODO check
-          autovalidateMode: AutovalidateMode.always,
-          child: ListView(children: [
-            const Text('📒',
-                style: TextStyle(fontSize: 130), textAlign: TextAlign.center),
-            const SizedBox(height: 8),
+          autovalidateMode:
+              context.read<SignInFormBloc>().state.showErrorMessages
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+          child: ListView(padding: const EdgeInsets.all(8), children: [
+            SvgPicture.asset('assets/images/notes.svg', width: 130, height: 130,),
+            const SizedBox(height: 24),
             TextFormField(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.email),
@@ -50,12 +53,12 @@ class SignInForm extends StatelessWidget {
               validator: (value) => context
                   .read<SignInFormBloc>()
                   .state
-                  .email
+                  .password
                   .value
                   .fold(
                       (f) => f.maybeMap(
-                      shortPassword: (_) => 'Short Password',
-                      orElse: () => null),
+                          shortPassword: (_) => 'Short Password',
+                          orElse: () => null),
                       (_) => null),
             ),
             const SizedBox(
@@ -66,14 +69,18 @@ class SignInForm extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                     child: TextButton(
-                        onPressed: () => {},
+                        onPressed: () => context.read<SignInFormBloc>().add(
+                            const SignInFormEvent
+                                .signInWithEmailAndPasswordPressed()),
                         child: const Text(
                           'SIGN IN',
                           style: TextStyle(fontSize: 16),
                         ))),
                 Expanded(
                     child: TextButton(
-                        onPressed: () => {},
+                        onPressed: () => context.read<SignInFormBloc>().add(
+                            const SignInFormEvent
+                                .registerWithEmailAndPasswordPressed()),
                         child: const Text(
                           'REGISTER',
                           style: TextStyle(fontSize: 16),
@@ -81,19 +88,34 @@ class SignInForm extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => context
+                  .read<SignInFormBloc>()
+                  .add(const SignInFormEvent.signInWithGooglePressed()),
               child: const Text(
                 'SIGN IN WITH GOOGLE',
-                style: TextStyle(
-                    backgroundColor: Colors.lightBlue,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ]),
         );
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.authFailureOrSuccessOption.fold(
+            () {},
+            (either) => either.fold(
+                    (failure) => FlushbarHelper.createError(
+                        message: failure.map(
+                            canceledByUser: (_) => 'Canceled by user',
+                            invalidEmailAndPassword: (_) =>
+                                'Invalid email and password',
+                            emailIsAlreadyInUse: (_) =>
+                                'Email is already in use',
+                            serverError: (_) => 'Server error')).show(context),
+                    (_) {
+                  // TODO navigate
+                }));
+      },
     );
   }
 }
