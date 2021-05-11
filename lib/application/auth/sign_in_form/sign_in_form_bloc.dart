@@ -59,7 +59,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       Future<Either<AuthFailure, Unit>> Function(
               {@required EmailAddress email, @required Password password})
           forwardedCall) async* {
-    Either<AuthFailure, Unit> _authFailureOrSuccessOption;
+    Either<AuthFailure, Unit> _authFailureOrSuccess;
 
     final bool isEmailValid = state.email.isValid();
     final bool isPasswordValid = state.password.isValid();
@@ -70,13 +70,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         authFailureOrSuccessOption: none(),
       );
 
-      _authFailureOrSuccessOption =
+      _authFailureOrSuccess =
           await forwardedCall(email: state.email, password: state.password);
     }
 
     yield state.copyWith(
         showErrorMessages: true,
         isSubmitting: false,
-        authFailureOrSuccessOption: optionOf(_authFailureOrSuccessOption));
+        authFailureOrSuccessOption: optionOf(_authFailureOrSuccess));
   }
 }

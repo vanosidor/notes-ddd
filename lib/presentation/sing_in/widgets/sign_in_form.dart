@@ -17,7 +17,11 @@ class SignInForm extends StatelessWidget {
                   ? AutovalidateMode.always
                   : AutovalidateMode.disabled,
           child: ListView(padding: const EdgeInsets.all(8), children: [
-            SvgPicture.asset('assets/images/notes.svg', width: 130, height: 130,),
+            SvgPicture.asset(
+              'assets/images/notes.svg',
+              width: 130,
+              height: 130,
+            ),
             const SizedBox(height: 24),
             TextFormField(
               decoration: const InputDecoration(

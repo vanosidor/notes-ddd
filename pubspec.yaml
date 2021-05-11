@@ -38,6 +38,7 @@ dependencies:
   injectable: ^1.1.2
   another_flushbar: ^1.10.20
   flutter_svg: ^0.22.0
+  uuid: ^2.2.2
 
 dev_dependencies:
   flutter_test:
