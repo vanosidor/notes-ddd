@@ -13,8 +13,9 @@ abstract class ValueObject<T> {
 
   bool isValid() => value.isRight();
 
+  /// Throws [UnexpectedValueError] containing the [ValueFailure]
   T getOrCrash() {
-    return value.fold((f) => throw UnexpectedValueError(f), (r) => r);
+    return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 
   @override
@@ -38,11 +39,10 @@ class UniqueId extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory UniqueId() {
-    return UniqueId._(right(Uuid().v1()));
+    return UniqueId._(right(const Uuid().v1()));
   }
 
   factory UniqueId.fromUniqueString(String id) {
-    assert(id != null);
     return UniqueId._(right(id));
   }
 
