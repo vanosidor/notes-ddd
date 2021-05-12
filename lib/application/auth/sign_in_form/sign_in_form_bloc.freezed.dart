@@ -55,7 +55,6 @@ mixin _$SignInFormEvent {
     required TResult Function() signInWithGooglePressed,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String emailStr)? emailChanged,
@@ -66,7 +65,6 @@ mixin _$SignInFormEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(EmailChanged value) emailChanged,
@@ -79,7 +77,6 @@ mixin _$SignInFormEvent {
         signInWithGooglePressed,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmailChanged value)? emailChanged,
@@ -107,7 +104,6 @@ class _$SignInFormEventCopyWithImpl<$Res>
   _$SignInFormEventCopyWithImpl(this._value, this._then);
 
   final SignInFormEvent _value;
-
   // ignore: unused_field
   final $Res Function(SignInFormEvent) _then;
 }
@@ -117,7 +113,6 @@ abstract class $EmailChangedCopyWith<$Res> {
   factory $EmailChangedCopyWith(
           EmailChanged value, $Res Function(EmailChanged) then) =
       _$EmailChangedCopyWithImpl<$Res>;
-
   $Res call({String emailStr});
 }
 
@@ -242,7 +237,6 @@ abstract class EmailChanged implements SignInFormEvent {
   const factory EmailChanged(String emailStr) = _$EmailChanged;
 
   String get emailStr => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $EmailChangedCopyWith<EmailChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -253,7 +247,6 @@ abstract class $PasswordChangedCopyWith<$Res> {
   factory $PasswordChangedCopyWith(
           PasswordChanged value, $Res Function(PasswordChanged) then) =
       _$PasswordChangedCopyWithImpl<$Res>;
-
   $Res call({String passwordStr});
 }
 
@@ -378,7 +371,6 @@ abstract class PasswordChanged implements SignInFormEvent {
   const factory PasswordChanged(String passwordStr) = _$PasswordChanged;
 
   String get passwordStr => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -731,13 +723,9 @@ const $SignInFormState = _$SignInFormStateTearOff();
 /// @nodoc
 mixin _$SignInFormState {
   EmailAddress get email => throw _privateConstructorUsedError;
-
   Password get password => throw _privateConstructorUsedError;
-
   bool get isSubmitting => throw _privateConstructorUsedError;
-
   bool get showErrorMessages => throw _privateConstructorUsedError;
-
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
@@ -751,7 +739,6 @@ abstract class $SignInFormStateCopyWith<$Res> {
   factory $SignInFormStateCopyWith(
           SignInFormState value, $Res Function(SignInFormState) then) =
       _$SignInFormStateCopyWithImpl<$Res>;
-
   $Res call(
       {EmailAddress email,
       Password password,
@@ -766,7 +753,6 @@ class _$SignInFormStateCopyWithImpl<$Res>
   _$SignInFormStateCopyWithImpl(this._value, this._then);
 
   final SignInFormState _value;
-
   // ignore: unused_field
   final $Res Function(SignInFormState) _then;
 
@@ -809,7 +795,6 @@ abstract class _$SingInFormStateCopyWith<$Res>
   factory _$SingInFormStateCopyWith(
           _SingInFormState value, $Res Function(_SingInFormState) then) =
       __$SingInFormStateCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {EmailAddress email,
@@ -937,20 +922,15 @@ abstract class _SingInFormState implements SignInFormState {
 
   @override
   EmailAddress get email => throw _privateConstructorUsedError;
-
   @override
   Password get password => throw _privateConstructorUsedError;
-
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
-
   @override
   bool get showErrorMessages => throw _privateConstructorUsedError;
-
   @override
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
-
   @override
   @JsonKey(ignore: true)
   _$SingInFormStateCopyWith<_SingInFormState> get copyWith =>
