@@ -57,9 +57,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
   Stream<SignInFormState> _performActionOnAuthFacadeWithEmailAndPassword(
       Future<Either<AuthFailure, Unit>> Function(
-              {@required EmailAddress email, @required Password password})
+              {required EmailAddress email, required Password password})
           forwardedCall) async* {
-    Either<AuthFailure, Unit> _authFailureOrSuccess;
+    Either<AuthFailure, Unit>? _authFailureOrSuccess;
 
     final bool isEmailValid = state.email.isValid();
     final bool isPasswordValid = state.password.isValid();

@@ -5,7 +5,7 @@ import 'package:notes_ddd/di/injection.dart';
 import 'package:notes_ddd/presentation/sing_in/widgets/sign_in_form.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key key}) : super(key: key);
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
