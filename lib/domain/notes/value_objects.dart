@@ -72,6 +72,7 @@ class NoteColor extends ValueObject<Color> {
     Color(0xfffffdd0),
   ];
 
+  @override
   final Either<ValueFailure<Color>, Color> value;
 
   factory NoteColor(Color input) {
