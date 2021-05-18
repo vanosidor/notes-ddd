@@ -46,6 +46,7 @@ abstract class NoteDto implements _$NoteDto {
   }
 
   factory NoteDto.fromFirestore(DocumentSnapshot doc) {
+    // TODO check (maybe ex)
     return NoteDto.fromJson(doc.data()! as Map<String, dynamic>).copyWith(id: doc.id);
   }
 

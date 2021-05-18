@@ -5,14 +5,9 @@ import 'package:notes_ddd/domain/notes/note.dart';
 import 'note_failure.dart';
 
 abstract class INoteRepository {
-  // watch all notes
-  // watch uncompleted
-
-  // CUD (CRUD but read methods up)
-
   Stream<Either<NoteFailure, KtList<Note>>> watchAll();
   Stream<Either<NoteFailure, KtList<Note>>> watchUncompleted();
-  Stream<Either<NoteFailure, Unit>> create(Note note);
-  Stream<Either<NoteFailure, Unit>> update(Note note);
-  Stream<Either<NoteFailure, Unit>> delete(Note note);
+  Future<Either<NoteFailure, Unit>> create(Note note);
+  Future<Either<NoteFailure, Unit>> update(Note note);
+  Future<Either<NoteFailure, Unit>> delete(Note note);
 }
