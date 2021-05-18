@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:notes_ddd/domain/core/failures.dart';
 
 class UnexpectedValueError extends Error {
@@ -9,7 +7,10 @@ class UnexpectedValueError extends Error {
 
   @override
   String toString() {
-    const explanation = 'Bad state for ValueFailure. Application terminating... ';
+    const explanation =
+        'Bad state for ValueFailure. Application terminating... ';
     return Error.safeToString('$explanation Failure was: $valueFailure');
   }
 }
+
+class NotAuthenticatedError extends Error {}

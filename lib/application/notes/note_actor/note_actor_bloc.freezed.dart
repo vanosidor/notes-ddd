@@ -485,6 +485,8 @@ abstract class _$DeleteFailureCopyWith<$Res> {
           _DeleteFailure value, $Res Function(_DeleteFailure) then) =
       __$DeleteFailureCopyWithImpl<$Res>;
   $Res call({NoteFailure noteFailure});
+
+  $NoteFailureCopyWith<$Res> get noteFailure;
 }
 
 /// @nodoc
@@ -508,6 +510,13 @@ class __$DeleteFailureCopyWithImpl<$Res>
           : noteFailure // ignore: cast_nullable_to_non_nullable
               as NoteFailure,
     ));
+  }
+
+  @override
+  $NoteFailureCopyWith<$Res> get noteFailure {
+    return $NoteFailureCopyWith<$Res>(_value.noteFailure, (value) {
+      return _then(_value.copyWith(noteFailure: value));
+    });
   }
 }
 
