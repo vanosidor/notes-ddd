@@ -6,6 +6,7 @@ import 'package:notes_ddd/application/auth/auth_bloc.dart';
 import 'package:notes_ddd/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:notes_ddd/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:notes_ddd/di/injection.dart';
+import 'package:notes_ddd/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:notes_ddd/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
@@ -59,7 +60,7 @@ class NotesOverviewPage extends StatelessWidget {
               )
             ],
           ),
-          // body: ListView,
+          body: NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               // TODO navigate to NoteFormPAge
