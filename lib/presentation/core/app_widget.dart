@@ -5,7 +5,6 @@ import 'package:notes_ddd/di/injection.dart';
 import 'package:notes_ddd/presentation/routes/router.gr.dart';
 
 class MyApp extends StatelessWidget {
-
   final AppRouter _appRouter = AppRouter();
 
   @override
@@ -22,11 +21,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light().copyWith(
             primaryColor: Colors.green[800],
             accentColor: Colors.blueAccent,
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: Colors.blue[900]),
             inputDecorationTheme: InputDecorationTheme(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             )),
-        routerDelegate: _appRouter.delegate(), routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
         // home: const SignInPage(),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_ddd/application/auth/auth_bloc.dart';
@@ -11,11 +10,11 @@ class SplashPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) => state.when(
         initial: () => {},
-        authenticated: () => print('User authenticated'),
-        unauthenticated: () => context.router.push(const SignInRoute()),
+        authenticated: () => context.router.replace(const NotesOverviewRoute()),
+        unauthenticated: () => context.router.replace(const SignInRoute()),
       ),
       child: const Scaffold(
-        body: CircularProgressIndicator(),
+        body: Center(child: CircularProgressIndicator()),
       ),
     );
   }
