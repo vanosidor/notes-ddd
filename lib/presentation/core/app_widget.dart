@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.blueAccent,
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: Colors.blue[900]),
+            unselectedWidgetColor: Colors.white,
             inputDecorationTheme: InputDecorationTheme(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
