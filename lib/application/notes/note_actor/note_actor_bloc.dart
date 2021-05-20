@@ -27,6 +27,6 @@ class NoteActorBloc extends Bloc<NoteActorEvent, NoteActorState> {
     final possibleFailure = await _noteRepository.delete(event.note);
 
     yield possibleFailure.fold((f) => NoteActorState.deleteFailure(f),
-        (r) => const NoteActorState.deleteSuccess());
+        (_) => const NoteActorState.deleteSuccess());
   }
 }
