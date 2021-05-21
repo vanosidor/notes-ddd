@@ -41,7 +41,7 @@ class NotesOverviewPage extends StatelessWidget {
                             'Insufficient permissions',
                         unableToUpdate: (_) => 'Unable to update',
                         unexpected: (_) =>
-                            'Unexpected error occurred while deleting, ',
+                            'Unexpected error occurred while deleting',
                       ),
                       duration: const Duration(seconds: 5)),
                   orElse: () {})),
@@ -61,8 +61,7 @@ class NotesOverviewPage extends StatelessWidget {
           body: const NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              // TODO navigate to NoteFormPAge
-              /*context.router.push()*/
+              context.router.push(NoteFormRoute(editedNote: null));
             },
             child: const Icon(Icons.add),
           ),

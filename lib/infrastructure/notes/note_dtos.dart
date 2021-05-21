@@ -46,7 +46,6 @@ abstract class NoteDto implements _$NoteDto {
   }
 
   factory NoteDto.fromFirestore(DocumentSnapshot doc) {
-    // TODO check (maybe ex)
     return NoteDto.fromJson(doc.data()! as Map<String, dynamic>).copyWith(id: doc.id);
   }
 
@@ -66,7 +65,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
         name: todoItem.name.getOrCrash(),
         done: todoItem.done);
   }
-
+// TODO fix to json
   factory TodoItemDto.fromJson(Map<String, dynamic> json) =>
       _$TodoItemDtoFromJson(json);
 
@@ -90,5 +89,5 @@ class ServerTimeStampConverter implements JsonConverter<FieldValue, Object> {
   }
 
   @override
-  Object toJson(FieldValue fieldValue) => fieldValue;
+  Object toJson(FieldValue fieldValue) => Timestamp.now();
 }

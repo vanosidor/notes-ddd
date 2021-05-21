@@ -14,6 +14,7 @@ class NoteFormState with _$NoteFormState {
       note: Note.empty(),
       showErrorMessage: false,
       isSaving: false,
-      saveFailureOrSuccessOption: none(),
+      saveFailureOrSuccessOption:
+          some(left(const NoteFailure.unableToUpdate())),
       isEditing: false);
 }
