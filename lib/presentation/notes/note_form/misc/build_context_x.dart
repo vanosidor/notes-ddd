@@ -8,5 +8,5 @@ extension FormTodosX on BuildContext {
       Provider.of<FormTodos>(this, listen: false).value;
 
   set formTodos(KtList<TodoItemPrimitive> value) =>
-      Provider.of(this, listen: false).value = value;
+      Provider.of<FormTodos>(this, listen: false).value = value;
 }
