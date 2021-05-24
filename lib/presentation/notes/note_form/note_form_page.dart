@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_ddd/application/notes/note_form/note_form_bloc.dart';
 import 'package:notes_ddd/di/injection.dart';
 import 'package:notes_ddd/domain/notes/note.dart';
+import 'package:notes_ddd/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:notes_ddd/presentation/routes/router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -34,15 +35,16 @@ class NoteFormPage extends StatelessWidget {
                             unableToUpdate: (f) => 'Unable to update'),
                       ).show(context),
                   (_) => {
-                        context.router
-                            .popUntil((route) =>
-                                route.settings.name == NotesOverviewRoute.name),
+                        context.router.popUntil((route) =>
+                            route.settings.name == NotesOverviewRoute.name),
                       }));
         },
         builder: (context, state) => Stack(
           children: <Widget>[
             const NoteFormPageScaffold(),
-            SavingInProgressOverlay(isSaving: state.isSaving,),
+            SavingInProgressOverlay(
+              isSaving: state.isSaving,
+            ),
           ],
         ),
       ),
@@ -53,14 +55,14 @@ class NoteFormPage extends StatelessWidget {
 class SavingInProgressOverlay extends StatelessWidget {
   final bool isSaving;
 
-  const SavingInProgressOverlay({Key? key, required this.isSaving}) : super(key: key);
+  const SavingInProgressOverlay({Key? key, required this.isSaving})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: !isSaving,
       child: AnimatedContainer(
-
         duration: const Duration(milliseconds: 150),
         color: isSaving ? Colors.black.withOpacity(0.7) : Colors.transparent,
         child: Center(
@@ -114,7 +116,21 @@ class NoteFormPageScaffold extends StatelessWidget {
           )
         ],
       ),
-      body: Container(),
+      body: BlocBuilder<NoteFormBloc, NoteFormState>(
+        builder: (context, state) {
+          return Form(
+              autovalidateMode: state.showErrorMessage
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const <Widget>[
+                    BodyField(),
+                  ],
+                ),
+              ));
+        },
+      ),
     );
   }
 }
