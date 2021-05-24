@@ -6,9 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_ddd/application/notes/note_form/note_form_bloc.dart';
 import 'package:notes_ddd/di/injection.dart';
 import 'package:notes_ddd/domain/notes/note.dart';
+import 'package:notes_ddd/presentation/notes/note_form/misc/todo_item_presentaition_classes.dart';
+import 'package:notes_ddd/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:notes_ddd/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:notes_ddd/presentation/notes/note_form/widgets/color_field_widget.dart';
 import 'package:notes_ddd/presentation/routes/router.gr.dart';
+import 'package:provider/provider.dart';
 
 class NoteFormPage extends StatelessWidget {
   final Note? editedNote;
@@ -119,18 +122,22 @@ class NoteFormPageScaffold extends StatelessWidget {
       ),
       body: BlocBuilder<NoteFormBloc, NoteFormState>(
         builder: (context, state) {
-          return Form(
-              autovalidateMode: state.showErrorMessage
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: const <Widget>[
-                    BodyField(),
-                    ColorField(),
-                  ],
-                ),
-              ));
+          return ChangeNotifierProvider(
+            create: (context) => FormTodos(),
+            child: Form(
+                autovalidateMode: state.showErrorMessage
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: const <Widget>[
+                      BodyField(),
+                      ColorField(),
+                      AddTodoTile()
+                    ],
+                  ),
+                )),
+          );
         },
       ),
     );
