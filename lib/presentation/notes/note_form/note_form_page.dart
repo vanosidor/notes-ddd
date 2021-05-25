@@ -134,8 +134,8 @@ class NoteFormPageScaffold extends StatelessWidget {
                     children: const <Widget>[
                       BodyField(),
                       ColorField(),
-                      AddTodoTile(),
                       TodoList(),
+                      AddTodoTile(),
                     ],
                   ),
                 )),

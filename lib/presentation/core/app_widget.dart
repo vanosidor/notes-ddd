@@ -23,14 +23,12 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.blueAccent,
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: Colors.blue[900]),
-            unselectedWidgetColor: Colors.white,
             inputDecorationTheme: InputDecorationTheme(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             )),
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        // home: const SignInPage(),
       ),
     );
   }

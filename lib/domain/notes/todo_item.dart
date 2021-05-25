@@ -20,6 +20,6 @@ abstract class TodoItem implements _$TodoItem {
       TodoItem(id: UniqueId(), name: TodoName(''), done: false);
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return name.value.fold((l) => some(l), (r) => none());
+    return name.value.fold((l) => some(l), (_) => none());
   }
 }
