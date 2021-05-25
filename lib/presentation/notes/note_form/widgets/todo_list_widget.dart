@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:notes_ddd/application/notes/note_form/note_form_bloc.dart';
 import 'package:notes_ddd/domain/notes/value_objects.dart';
@@ -30,13 +31,44 @@ class TodoList extends StatelessWidget {
         }
       },
       child: Consumer<FormTodos>(
-        builder: (context, formTodos, child) => ListView.builder(
+        builder: (context, formTodos, child) =>
+            ImplicitlyAnimatedReorderableList<TodoItemPrimitive>(
           shrinkWrap: true,
-          itemCount: formTodos.value.size,
-          itemBuilder: (context, index) => TodoTile(
-            key: ValueKey(context.formTodos[index].id),
-            index: index,
+          // items: formTodos.value.asList(),
+          // removeDuration: const Duration(),
+          // areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
+          // onReorderFinished: (item, from, to, newItems) {
+          //   context.formTodos = newItems.toImmutableList();
+          //   context
+          //       .read<NoteFormBloc>()
+          //       .add(NoteFormEvent.todosChanged(context.formTodos));
+          // },
+          removeDuration: const Duration(),
+          items: formTodos.value.asList(),
+          areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
+          onReorderFinished: (item, from, to, newItems) {
+            context.formTodos = newItems.toImmutableList();
+            context
+                .read<NoteFormBloc>()
+                .add(NoteFormEvent.todosChanged(context.formTodos));
+          },
+          itemBuilder: (context, animation, item, index) => Reorderable(
+            key: ValueKey(item.id),
+            builder: (context, dragAnimation, inDrag) {
+              return ScaleTransition(
+                scale:
+                    Tween<double>(begin: 1, end: 0.95).animate(dragAnimation),
+                child: TodoTile(
+                  index: index,
+                  // elevation: dragAnimation.value * 4,
+                ),
+              );
+            },
           ),
+          //     Reorderable(
+          //   key: ValueKey(item),
+          //   builder: (context, animation, inDrag) => TodoTile(index: index),
+          // ),
         ),
       ),
     );
@@ -61,7 +93,7 @@ class TodoTile extends HookWidget {
       child: Slidable(
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
-          extentRatio: 0.35,
+          extentRatio: 0.20,
           children: [
             SlidableAction(
               icon: Icons.delete,
@@ -94,6 +126,7 @@ class TodoTile extends HookWidget {
               },
               value: todo.done,
             ),
+            trailing: const Handle(child: Icon(Icons.reorder)),
             title: TextFormField(
               controller: _todoTextEditingController,
               maxLength: TodoName.maxLength,
