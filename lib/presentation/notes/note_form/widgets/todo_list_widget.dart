@@ -1,7 +1,10 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:notes_ddd/application/notes/note_form/note_form_bloc.dart';
+import 'package:notes_ddd/presentation/notes/note_form/misc/build_context_x.dart';
 import 'package:notes_ddd/presentation/notes/note_form/misc/todo_item_presentaition_classes.dart';
 import 'package:provider/provider.dart';
 
@@ -27,25 +30,38 @@ class TodoList extends StatelessWidget {
       child: Consumer<FormTodos>(
         builder: (context, formTodos, child) => ListView.builder(
           shrinkWrap: true,
-          itemBuilder: (context, index) => TodoTile(index: index),
+          itemCount: formTodos.value.size,
+          itemBuilder: (context, index) => TodoTile(
+            index: index,
+          ),
         ),
       ),
     );
   }
 }
 
-class TodoTile extends StatelessWidget {
+class TodoTile extends HookWidget {
   final int index;
 
   const TodoTile({required this.index, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final todo =
+        context.formTodos.getOrElse(index, (_) => TodoItemPrimitive.empty());
+
     return ListTile(
       leading: Checkbox(
-        onChanged: (value) => {},
-        value: true,
+        onChanged: (value) {
+          context.formTodos = context.formTodos.map((listTodo) =>
+              listTodo == todo ? listTodo.copyWith(done: value!) : listTodo);
+          context
+              .read<NoteFormBloc>()
+              .add(NoteFormEvent.todosChanged(context.formTodos));
+        },
+        value: todo.done,
       ),
+      title: Text(todo.name),
     );
   }
 }

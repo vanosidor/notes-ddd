@@ -135,7 +135,7 @@ class NoteFormPageScaffold extends StatelessWidget {
                       BodyField(),
                       ColorField(),
                       AddTodoTile(),
-                      TodoList()
+                      TodoList(),
                     ],
                   ),
                 )),
